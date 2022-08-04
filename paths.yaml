@@ -27,5 +27,5 @@ alternatives:
       default: %asciify{$artist - $title}
     formats: mp3
     embed: true
-    query: "favorite:true"
+    query: "mobile:true"
     removable: false

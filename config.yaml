@@ -25,6 +25,7 @@ plugins:
   - mbcollection
   - mbsync
   - info
+  - random
   - yearfixer
   - alternatives
   - popularity

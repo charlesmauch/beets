@@ -2,7 +2,7 @@
 
 types:
    rating: int
-   plays: int
+   playcount: int
    popularity: int
    favorite: bool
    exercise: bool
