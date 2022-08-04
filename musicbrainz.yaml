@@ -1,0 +1,38 @@
+# MUSICBRAINZ ---------------------------------------------------------------
+
+# Musicbrainz passwords and account not included in repo
+
+
+# beet acousticbrainz query  - to download info
+# https://docs.beets.io/en/stable/plugins/acousticbrainz.html
+# for fields downloaded
+acousticbrainz:
+    auto: yes
+    tags:
+      - average_loudness
+      - bpm
+      - chords_changes_rate
+      - chords_key
+      - chords_number_rate
+      - chords_scale
+      - danceable
+      - gender
+      - genre_rosamerica
+      - initial_key 
+      - key_strength
+      - mood_acoustic
+      - mood_aggressive
+      - mood_electronic
+      - mood_happy
+      - mood_party
+      - mood_relaxed
+      - mood_sad
+      - moods_mirex
+      - rhythm
+      - timbre
+      - tonal
+      - voice_instrumental
+
+# beet fingerprint query     - to generate acoustic fingerprint
+chroma:
+    auto: no

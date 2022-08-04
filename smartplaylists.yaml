@@ -1,0 +1,100 @@
+# PLAYLISTS ------------------------------------------------------------------
+
+# Various commands of note
+# 'beet list 'artist:TWICE'     - list all tracks from artist TWICE
+# 'beet info -a 'artist:TWICE'  - get album info from artist TWICE (for all albums)
+#
+# Assign Groups [ Country, Folk, K-Pop, R&B, Rock, Pop, Electronic, Grunge ]
+# beet modify grouping=K-Pop 'artist:TWICE'
+
+# Other Fields?
+# beet modify activity=Coding 'artist:Daft Punk'
+# Activity: Coding, Reading, Steady Cycling, Intense Cycling
+
+# Popularity run this to update scores
+# ''beet popularity'
+
+smartplaylist:
+    auto: no
+    playlist_dir: /music/Playlists
+    playlists:
+        - name: Favorites.m3u8
+          query: "favorite:true"
+        - name: Popular/Find New Favs.m3u8
+          query: "^favorite:true popularity:60.. 'added:-2y..'"
+
+        - name: Popular/Popular-90.m3u8
+          query: "^favorite:true popularity:90.."
+        - name: Popular/Popular-80.m3u8
+          query: "^favorite:true popularity:80..89"
+        - name: Popular/Popular-70.m3u8
+          query: "^favorite:true popularity:70..79"
+        - name: Popular/Popular-60.m3u8
+          query: "^favorite:true popularity:60..69"
+        - name: Popular/Popular-50.m3u8
+          query: "^favorite:true popularity:50..59"
+
+#        - name: Years/%bucket{$year}.m3u
+#          query: 'original_year:1900..2050 year+'
+
+        - name: World Music.m3u8
+          query: '^favorite:true ^language:eng'
+
+        - name: Grouping/$grouping.m3u8
+          query: "^favorite:true grouping::.* albumartist+ year+"
+        - name: Grouping/No Grouping.m3u8
+          query: "^favorite:true grouping::^$"
+
+        - name: Christmas.m3u8
+          query: 
+            - "^favorite:true Christmas"
+            - "^favorite:true Chipmunk"
+            - "^favorite:true Carols"
+            - "^favorite:true Reindeer"
+            - "^favorite:true Holiday"
+        - name: Acoustic Guitar.m3u8
+          query: 
+            - "^favorite:true genre:(Classical|Flamenco) guitar"
+            - "^favorite:true genre:Flamenco"
+            - "^favorite:true Rodrigo y Gabriela"
+        - name: Bake My Cookies.m3u8
+          query: 
+            - "^favorite:true genre:Rap"
+            - "^favorite:true genre:Hip Hop"
+        - name: Groovin.m3u8
+          query: 
+            - "^favorite:true genre:Soft Rock"
+            - "^favorite:true genre:Dream Pop"
+        - name: Rock Out.m3u8
+          query: 
+            - "^favorite:true genre:Metal"
+            - "^favorite:true genre:Hard Rock"
+        - name: Slut Pop.m3u8
+          query: 
+            - "^favorite:true Britney Spears"
+            - "^favorite:true Carly Rae Jepsen"
+            - "^favorite:true Justin Timberlake"
+            - "^favorite:true Gwen Stefani"
+            - "^favorite:true Fifth Harmony"
+            - "^favorite:true Katy Perry"
+            - "^favorite:true Kesha"
+            - "^favorite:true Meghan Trainor"
+            - "^favorite:true Kylie Minogue"
+            - "^favorite:true Madonna"
+            - "^favorite:true Selena Gomez"
+            - "^favorite:true Jessie J"
+            - "^favorite:true Tove Lo"
+            - "^favorite:true Miranda Cosgrove"
+            - "^favorite:true Natalia Kills"
+            - "^favorite:true P!nk"
+            - "^favorite:true Pretty Reckless"
+
+        - name: High-Res.m3u
+          query: 'samplerate:96000..'
+
+        - name: Last 30 Days.m3u8
+          query: '^favorite:true added- added:-1m.. year+'
+        - name: Last 60 Days.m3u8
+          query: '^favorite:true added- added:-2m.. year+'
+        - name: Last 6 Months.m3u8
+          query: '^favorite:true added- added:-6m.. year+'

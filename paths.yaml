@@ -1,0 +1,31 @@
+# PATHS ----------------------------------------------------------------------
+
+bucket:
+    bucket_year:  [ '1970s', '1980s', '1990s', '2000s', '2010s', '2020s' ]
+    bucket_alpha: [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z' ]
+
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
+paths:
+    default: %bucket{%the{$albumartist}}/%the{$albumartist}/$year - $album/%if{$multidisc,$disc-}$track. $title
+    singleton: _Singles/%the{$artist} - $title
+    comp: _Compilations/$year - $album/$track. %the{$artist} - $title
+    albumtype_soundtrack: _Soundtracks/$year - $album/%if{$multidisc,$disc-}$track. %the{$artist} - $title
+
+# ALTERNATIVES ---------------------------------------------------------------
+# Used to prep for syncing to mobile devices or setting up linkfarms
+# 'beet alt update iphone' starts process
+#
+# 'beet modify favorite=true query' - to add to playlist
+# 'beet modify favorite! query      - to remove from playlist
+#
+alternatives:
+  iphone:
+    directory: /exports/iphone
+    paths:
+      default: %asciify{$artist - $title}
+    formats: mp3
+    embed: true
+    query: "favorite:true"
+    removable: false

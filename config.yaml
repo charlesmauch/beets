@@ -1,0 +1,108 @@
+# PLUGINS -------------------------------------------------------------------
+
+pluginpath:
+  - /config/plugins/beets-alternative/beetsplug
+  - /config/plugins/beets-popularity/beetsplug
+  - /config/plugins/beets-yearfixer/beetsplug
+
+plugins: 
+  - fetchart
+  - embedart
+  - zero
+  - convert
+  - scrub
+  - replaygain
+  - lastgenre
+  - chroma
+  - web
+  - the
+  - ftintitle
+  - bucket
+  - inline
+  - types
+  - smartplaylist
+  - rewrite
+  - mbcollection
+  - mbsync
+  - info
+  - yearfixer
+  - alternatives
+  - popularity
+  - acousticbrainz
+
+# GENERAL CONFIG -----------------------------------------------------------
+
+directory: /music
+library: /config/musiclibrary.blb
+
+art_filename: albumart  # results in "albumart.jpg"
+max_filename_length: 0  # unlimited
+
+threaded: yes           # use multiple threads during import
+timeout: 5.0
+
+# INCLUDES -----------------------------------------------------------------
+
+include:
+    - musicbrainz.yaml
+    - passwords.yaml
+    - paths.yaml
+    - metadata.yaml
+    - smartplaylists.yaml
+    - autotagger.yaml
+
+# UI -------------------------------------------------------------------------
+# Below is used normally
+#format_item:  '%upper{$artist} : $album : $title'
+#format_album: '%upper{$albumartist} : $album'
+
+# Replace when doing mass operations, makes it easier to see changes
+format_item:  '%left{%upper{$artist}                                          ,20} : %left{$album                                                   ,30} : $title'
+format_album: '%left{%upper{$albumartist}                                     ,20} : %left{$album                                                   ,40} '
+time_format: '%Y-%m-%d %H:%M:%S'
+terminal_encoding: utf8
+
+ui:
+    terminal_width: 110
+    length_diff_thresh: 10.0
+    color: yes
+
+# MISC -----------------------------------------------------------------------
+
+convert:
+    auto: no
+    ffmpeg: /usr/bin/ffmpeg
+    opts: -ab 320k -ac 2 -ar 48000
+    max_bitrate: 320
+    threads: 1
+
+ftintitle:
+    auto: yes
+    drop: no
+    format: (feat. {})
+
+lastgenre:
+    auto: yes
+    source: album
+    canonical: yes
+    count: 4 
+
+embedart:
+    auto: yes
+
+fetchart:
+    auto: yes
+    midwidth: 400
+    enforce_ratio: 10px
+    sources: filesystem itunes amazon albumart coverart
+    
+replaygain:
+    auto: no
+
+scrub:
+    auto: yes
+
+web:
+    host: 0.0.0.0
+    port: 8337
+

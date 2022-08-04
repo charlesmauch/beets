@@ -1,0 +1,98 @@
+# METADATA  ------------------------------------------------------------------
+
+types:
+   rating: int
+   plays: int
+   popularity: int
+   favorite: bool
+   exercise: bool
+   phone: bool
+   dislike: bool
+   year: date
+   original_date: date
+
+zero:
+    auto: yes
+    fields: 
+      - month 
+      - day 
+      - original_month
+      - original_day 
+      - encoder
+      - comments
+      - lyrics
+      - lyricist
+      - label
+    label: 'PMEDIA'
+    grouping: 'PMEDIA'
+    comments: [ 'www.t.me/pmedia_music', 'ripped by', 'EAC', 'LAME', 'PMEDIA']
+    lyrics: 'www.t.me/pmedia_music'
+    lyricist: 'www.t.me/pmedia_music'
+    update_database: true
+    
+rewrite:
+    artist Girls’ Generation.*: Girls’ Generation
+    artist .*Fatboy Slim.*: Fatboy Slim
+    artist .*Hannah Montana.*: Miley Cyrus
+    artist .*Queens of the Stone Age.*: Queens of the Stone Age
+    artist .*Pete Tong.*: Pete Tong
+    artist .*Rodrigo y Gabriela.*: Rodrigo y Gabriela
+    artist .*Tom Petty.*: Tom Petty
+    artist .*Trent Reznor and.*: Nine Inch Nails
+    artist .*The Wreckers*: Michelle Branch
+    artist Selena Gomez.*: Selena Gomez
+    artist .*Boston Pops.*: Boston Pops Orchestra
+
+# IMPORTS --------------------------------------------------------------------
+        
+import:
+    # write metadata to files
+    write: yes
+
+    copy: yes
+    move: no
+    delete: no
+
+    # use auto-tagging where possible
+    # do not require confirmation on strong matches
+    autotag: yes
+    timid: no
+
+    resume: ask
+    incremental: yes
+    non_rec_action: ask
+
+    quiet: no # enable with command line option
+    quiet_fallback: skip
+    default_action: apply
+    log: /config/beet.log
+
+    singletons: no
+    languages: []
+    detail: no
+    flat: no
+
+    # use the release-date of the original (first) release of an album?
+    original_date: yes
+
+    # on multi-disk releases, assign track numbers for the whole album.
+    # If "per disk", make sure tracknames do not collide ("paths" setting).
+    per_disc_numbering: no
+
+    # files matching these patterns are deleted from source after import
+    clutter: ["Thumbs.DB", ".DS_Store", "*.m3u", ".pls", "*.jpg", "*.png", "*.nfo"]
+
+    # files/directories matching one of these patterns are ignored during import
+    ignore: [".*", "*~", "System Volume Information", "lost+found"]
+
+replace:
+    '^\.': _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    '[\xE8-\xEB]': e
+    '[\xEC-\xEF]': i
+    '[\xE2-\xE6]': a
+    '[\xF2-\xF6]': o
+    '[\xF8]': o
+    '\.$': _
+    '\s+$': ''
