@@ -15,6 +15,16 @@
 
 # When your done, delete the json file and output.beets
 
+# - Known Bugs ----------------------------------------------------------------
+# 1. Dupes when songs have words with a ' or a ’ - same with ... (or utf char 
+#    for the same)  even have a few tracks with same name but no apostrophe
+#     fix: figure out it's a dupe, add both counts together, submit two times to
+#     beets? how to match dupes?
+# 2. beet import process is super slow.  Maybe open library and
+#    update with sqllite queries?
+# 3. Need to store timestamp of last run.  Only produce new beets commands
+#    for updated tracks
+
 use JSON::PP;
 use utf8;
 
@@ -48,9 +58,15 @@ foreach my $submission (@$data) {
   # to catch multiple featured... type tags.  You would not believe the crappy
   # track titlenames that get submitted....
 
-  my $artist = lc( Cleanup( Cleanup( $submission->{track_metadata}->{artist_name} ) ) );
+  my $artist = uc( Cleanup( Cleanup( $submission->{track_metadata}->{artist_name} ) ) );
   my $album  = lc( Cleanup( Cleanup( $submission->{track_metadata}->{release_name} ) ) );
   my $track  = lc( Cleanup( Cleanup( $submission->{track_metadata}->{track_name} ) ) );
+
+ next unless (defined $artist and length $artist) ; # Happens sometimes... Stripped too much?
+ next unless (defined $album and length $album) ;   # Happens sometimes... Stripped too much?
+ next unless (defined $track and length $track);    # Happens sometimes... Stripped too much?
+ # Without above, a lot of playcount clobbering happens.
+
   # Use :: as a field seperator... for reasons...
    $string = "$artist :: $album :: $track";
  }
@@ -79,7 +95,8 @@ foreach my $result (sort keys %counter) {
  # -y (don't ask)
  # -W (don't write tags, just write to beet database)
  # I don't think the playcount tag can be written anyway, it's not standard id3
-
+ print $FH "echo\n";
+ print $FH "echo beeting on $artist :: $album :: $title ...\n";
  print $FH "beet modify -y -W playcount=$counter{ $result } artist:$artist album:$album title:$title\n";
  }
 }
