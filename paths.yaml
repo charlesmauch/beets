@@ -21,11 +21,28 @@ paths:
 # 'beet modify favorite! query      - to remove from playlist
 #
 alternatives:
-  iphone:
-    directory: /exports/iphone
+  mobile:
+    directory: /exports/mobile
     paths:
       default: %asciify{$artist - $title}
-    formats: mp3
+    formats: aac mp3
     embed: true
     query: "mobile:true"
+    removable: false
+  workout:
+    directory: /exports/workout
+    paths:
+      default: %asciify{$artist - $title}
+    formats: aac mp3
+    embed: true
+    query: "workout:true"
+    removable: false
+# Temporary, until mobile tags setup properly
+  favorites:
+    directory: /exports/favorites
+    paths:
+      default: %asciify{$artist - $title}
+    formats: aac mp3
+    embed: true
+    query: "favorite:true"
     removable: false

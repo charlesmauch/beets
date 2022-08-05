@@ -73,9 +73,9 @@ ui:
 convert:
     auto: no
     ffmpeg: /usr/bin/ffmpeg
-    opts: -ab 320k -ac 2 -ar 48000
     max_bitrate: 320
     threads: 1
+#    opts: -ab 320k -ac 2 -ar 48000
 
 ftintitle:
     auto: yes
