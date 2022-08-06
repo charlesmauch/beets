@@ -23,6 +23,7 @@ zero:
       - lyrics
       - lyricist
       - label
+      - grouping
     label: 'PMEDIA'
     grouping: 'PMEDIA'
     comments: [ 'www.t.me/pmedia_music', 'ripped by', 'EAC', 'LAME', 'PMEDIA']

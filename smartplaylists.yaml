@@ -75,9 +75,11 @@ smartplaylist:
 #          query: 'original_year:1900..2050 year+'
 
         - name: Grouping/$grouping.m3u8
-          query: "^favorite:true grouping::.* albumartist+ year+"
+          query: "grouping::.* albumartist+ year+"
         - name: Grouping/No Grouping.m3u8
-          query: "^favorite:true grouping::^$"
+          query: "grouping::^$"
+        - name: Grouping/No Grouping This Year.m3u8
+          query: "grouping::^$ added:-1y.."
 
         - name: World Music.m3u8
           query: '^favorite:true ^language:eng'
